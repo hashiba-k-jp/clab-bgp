@@ -1,0 +1,20 @@
+name: bgp_test
+topology:
+  nodes:
+    as1:
+      kind: linux
+      image: myfrr:9.1
+      # startup-config: as1.cfg
+    as2:
+      kind: linux
+      image: myfrr:9.1
+    as3:
+      kind: linux
+      image: myfrr:9.1
+    as4:
+      kind: linux
+      image: myfrr:9.1
+  links:
+    - endpoints: ["as1:eth1", "as2:eth1"]
+    - endpoints: ["as2:eth2", "as3:eth1"]
+    - endpoints: ["as2:eth3", "as4:eth1"]

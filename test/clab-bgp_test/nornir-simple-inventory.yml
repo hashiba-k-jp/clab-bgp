@@ -1,0 +1,21 @@
+---
+as1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.2
+as2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.3
+as3:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.4
+as4:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.5
