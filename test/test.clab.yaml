@@ -3,17 +3,20 @@ topology:
   nodes:
     as1:
       kind: linux
-      image: myfrr:9.1
-      # startup-config: as1.cfg
+      image: my-frr:latest
+      image-pull-policy: never
     as2:
       kind: linux
-      image: myfrr:9.1
+      image: my-frr:latest
+      image-pull-policy: never
     as3:
       kind: linux
-      image: myfrr:9.1
+      image: my-frr:latest
+      image-pull-policy: never
     as4:
       kind: linux
-      image: myfrr:9.1
+      image: my-frr:latest
+      image-pull-policy: never
   links:
     - endpoints: ["as1:eth1", "as2:eth1"]
     - endpoints: ["as2:eth2", "as3:eth1"]
