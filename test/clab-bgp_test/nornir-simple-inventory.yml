@@ -1,21 +1,11 @@
 ---
-as1:
-    username: 
-    password: 
-    platform: linux
-    hostname: 172.20.20.2
-as2:
+node1:
     username: 
     password: 
     platform: linux
     hostname: 172.20.20.3
-as3:
+node2:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.4
-as4:
-    username: 
-    password: 
-    platform: linux
-    hostname: 172.20.20.5
+    hostname: 172.20.20.2

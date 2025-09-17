@@ -1,23 +1,15 @@
 name: bgp_test
 topology:
   nodes:
-    as1:
+    node1:
       kind: linux
       image: my-frr:latest
       image-pull-policy: never
-    as2:
+      startup-config: ./configures/node1/frr.conf
+    node2:
       kind: linux
       image: my-frr:latest
       image-pull-policy: never
-    as3:
-      kind: linux
-      image: my-frr:latest
-      image-pull-policy: never
-    as4:
-      kind: linux
-      image: my-frr:latest
-      image-pull-policy: never
+      startup-config: ./configures/node2/frr.conf
   links:
-    - endpoints: ["as1:eth1", "as2:eth1"]
-    - endpoints: ["as2:eth2", "as3:eth1"]
-    - endpoints: ["as2:eth3", "as4:eth1"]
+    - endpoints: ["node1:eth1", "node2:eth1"]
