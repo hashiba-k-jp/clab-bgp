@@ -1,5 +1,10 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
+RUN apt-get update
+
 # install docker from an official shellscript installer
 RUN curl -fsSL https://get.docker.com -o install-docker.sh
 RUN sh install-docker.sh
+
+# install git-lfs
+RUN apt-get install -y git-lfs
