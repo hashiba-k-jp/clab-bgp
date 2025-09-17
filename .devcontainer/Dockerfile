@@ -1,0 +1,5 @@
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
+
+# install docker from an official shellscript installer
+RUN curl -fsSL https://get.docker.com -o install-docker.sh
+RUN sh install-docker.sh
