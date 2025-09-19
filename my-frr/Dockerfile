@@ -93,10 +93,17 @@ RUN install -m 640 -o frr -g frr tools/etc/frr/daemons.conf /etc/frr/daemons.con
 RUN install -m 640 -o frr -g frr tools/etc/frr/daemons /etc/frr/daemons
 RUN install -m 640 -o frr -g frr tools/etc/frr/support_bundle_commands.conf /etc/frr/support_bundle_commands.conf
 
-# Install service files
+# Install systemd and systemctl
 RUN install -m 644 tools/frr.service /etc/systemd/system/frr.service
-RUN apt-get install -y systemctl
+RUN apt-get install -y --no-install-recommends \
+    systemd \
+    systemd-sysv
+
+# Enable deamons
+RUN sed -i 's/bgpd=no/bgpd=yes/' /etc/frr/daemons \
+ && sed -i 's/zebra=no/zebra=yes/' /etc/frr/daemons
 RUN systemctl enable frr
 
-# Start FRR
-RUN systemctl start frr
+# Start FRRouting and Systemd
+ENTRYPOINT ["/sbin/init"]
+
