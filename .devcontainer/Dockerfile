@@ -6,4 +6,6 @@ RUN apt-get update
 RUN curl -fsSL https://get.docker.com -o install-docker.sh
 RUN sh install-docker.sh
 
-RUN apt-get install iputils-ping net-tools
+# RUN bash -c "$(curl -sL https://get.containerlab.dev)"
+
+RUN apt-get install -y iputils-ping net-tools

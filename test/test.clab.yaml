@@ -38,8 +38,6 @@ topology:
       image: alpine:latest
       mgmt-ipv4: 192.168.1.2
       exec:
-        - apk update
-        - apk add tcpdump
         - ip addr add 10.1.0.2/24 dev eth1
         - ip route del default
         - ip route add default via 10.1.0.254
