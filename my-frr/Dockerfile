@@ -107,9 +107,9 @@ RUN systemctl enable frr
 # Start FRRouting and Systemd
 ENTRYPOINT ["/sbin/init"]
 
-
-RUN apt-get install -y  --no-install-recommends iputils-ping
-RUN apt-get install -y  --no-install-recommends netcat-openbsd
-RUN apt-get install -y  --no-install-recommends traceroute
-RUN apt-get install -y  --no-install-recommends tcpdump
-RUN apt-get install -y  --no-install-recommends iproute2
+RUN apt-get install -y  --no-install-recommends \
+    iputils-ping \
+    netcat-openbsd \
+    traceroute \
+    tcpdump \
+    iproute2
