@@ -100,10 +100,16 @@ RUN apt-get install -y --no-install-recommends \
     systemd-sysv
 
 # Enable deamons
-RUN sed -i 's/bgpd=no/bgpd=yes/' /etc/frr/daemons \
- && sed -i 's/zebra=no/zebra=yes/' /etc/frr/daemons
+# RUN sed -i 's/bgpd=no/bgpd=yes/' /etc/frr/daemons \
+#  && sed -i 's/zebra=no/zebra=yes/' /etc/frr/daemons
 RUN systemctl enable frr
 
 # Start FRRouting and Systemd
 ENTRYPOINT ["/sbin/init"]
 
+
+RUN apt-get install -y  --no-install-recommends iputils-ping
+RUN apt-get install -y  --no-install-recommends netcat-openbsd
+RUN apt-get install -y  --no-install-recommends traceroute
+RUN apt-get install -y  --no-install-recommends tcpdump
+RUN apt-get install -y  --no-install-recommends iproute2

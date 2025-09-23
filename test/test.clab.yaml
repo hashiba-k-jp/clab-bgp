@@ -1,15 +1,82 @@
 name: bgp_test
+mgmt:
+  network: mgmt
+  ipv4-subnet: 192.168.0.0/16
 topology:
   nodes:
-    node1:
+    # A Container for Bridges (Namespace)
+    br:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 192.168.0.10
+    br1|br:
+      kind: bridge
+      network-mode: container:br
+    br2|br:
+      kind: bridge
+      network-mode: container:br
+
+    # Containers for AS65001
+    as1_speaker:
       kind: linux
       image: my-frr:latest
       image-pull-policy: never
-      startup-config: ./configures/node1/frr.conf
-    node2:
+      binds:
+        - configures/as1/daemons:/etc/frr/daemons
+        - configures/as1/speaker.conf:/etc/frr/frr.conf
+      mgmt-ipv4: 192.168.1.254
+    as1_node1:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 192.168.1.1
+      exec:
+        - ip addr add 10.1.0.1/24 dev eth1
+        - ip route del default
+        - ip route add default via 10.1.0.254
+    as1_node2:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 192.168.1.2
+      exec:
+        - apk update
+        - apk add tcpdump
+        - ip addr add 10.1.0.2/24 dev eth1
+        - ip route del default
+        - ip route add default via 10.1.0.254
+
+    # Containers for AS65002
+    as2_speaker:
       kind: linux
       image: my-frr:latest
       image-pull-policy: never
-      startup-config: ./configures/node2/frr.conf
+      binds:
+        - configures/as2/daemons:/etc/frr/daemons
+        - configures/as2/speaker.conf:/etc/frr/frr.conf
+      mgmt-ipv4: 192.168.2.254
+    as2_node1:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 192.168.2.1
+      exec:
+        - ip addr add 10.2.0.1/24 dev eth1
+        - ip route del default
+        - ip route add default via 10.2.0.254
+    as2_node2:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 192.168.2.2
+      exec:
+        - ip addr add 10.2.0.2/24 dev eth1
+        - ip route del default
+        - ip route add default via 10.2.0.254
+
   links:
-    - endpoints: ["node1:eth1", "node2:eth1"]
+    - endpoints: ["as1_speaker:eth1", "br1|br:eth201"]
+    - endpoints: ["as1_node1:eth1",   "br1|br:eth11"]
+    - endpoints: ["as1_node2:eth1",   "br1|br:eth12"]
+
+    - endpoints: ["as2_speaker:eth1", "br2|br:eth202"]
+    - endpoints: ["as2_node1:eth1",   "br2|br:eth21"]
+    - endpoints: ["as2_node2:eth1",   "br2|br:eth22"]
+
+    - endpoints: ["as1_speaker:eth2", "as2_speaker:eth2"]

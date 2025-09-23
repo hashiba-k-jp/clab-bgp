@@ -5,42 +5,39 @@
     "config": {
       "prefix": "clab",
       "mgmt": {
-        "network": "clab",
-        "bridge": "br-37ff085fdd62",
-        "ipv4-subnet": "172.20.20.0/24",
-        "ipv4-gw": "172.20.20.1",
-        "ipv6-subnet": "3fff:172:20:20::/64",
-        "ipv6-gw": "3fff:172:20:20::1",
-        "mtu": 1500,
+        "network": "mgmt",
+        "bridge": "br-9f00313760c2",
+        "ipv4-subnet": "192.168.0.0/16",
+        "ipv4-gw": "192.168.0.1",
         "external-access": true
       }
     }
   },
   "ssh-pub-keys": [],
   "nodes": {
-    "node1": {
+    "as1_node1": {
       "index": "0",
-      "shortname": "node1",
-      "longname": "clab-bgp_test-node1",
-      "fqdn": "node1.bgp_test.io",
+      "shortname": "as1_node1",
+      "longname": "clab-bgp_test-as1_node1",
+      "fqdn": "as1_node1.bgp_test.io",
       "group": "",
-      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/node1",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/as1_node1",
       "kind": "linux",
-      "image": "my-frr:latest",
+      "image": "alpine:latest",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.2",
-      "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::2",
-      "mgmt-ipv6-prefix-length": 64,
+      "mgmt-ipv4-address": "192.168.1.1",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-37ff085fdd62",
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
         "clab-node-group": "",
         "clab-node-kind": "linux",
-        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/node1",
-        "clab-node-longname": "clab-bgp_test-node1",
-        "clab-node-name": "node1",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/as1_node1",
+        "clab-node-longname": "clab-bgp_test-as1_node1",
+        "clab-node-name": "as1_node1",
         "clab-node-type": "",
         "clab-owner": "vscode",
         "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
@@ -49,29 +46,246 @@
       "port-bindings": [
       ]
     },
-    "node2": {
+    "as1_node2": {
       "index": "1",
-      "shortname": "node2",
-      "longname": "clab-bgp_test-node2",
-      "fqdn": "node2.bgp_test.io",
+      "shortname": "as1_node2",
+      "longname": "clab-bgp_test-as1_node2",
+      "fqdn": "as1_node2.bgp_test.io",
       "group": "",
-      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/node2",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/as1_node2",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "192.168.1.2",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/as1_node2",
+        "clab-node-longname": "clab-bgp_test-as1_node2",
+        "clab-node-name": "as1_node2",
+        "clab-node-type": "",
+        "clab-owner": "vscode",
+        "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
+        "containerlab": "bgp_test"
+      },
+      "port-bindings": [
+      ]
+    },
+    "as1_speaker": {
+      "index": "2",
+      "shortname": "as1_speaker",
+      "longname": "clab-bgp_test-as1_speaker",
+      "fqdn": "as1_speaker.bgp_test.io",
+      "group": "",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/as1_speaker",
       "kind": "linux",
       "image": "my-frr:latest",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.3",
-      "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::3",
-      "mgmt-ipv6-prefix-length": 64,
+      "mgmt-ipv4-address": "192.168.1.254",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-37ff085fdd62",
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
         "clab-node-group": "",
         "clab-node-kind": "linux",
-        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/node2",
-        "clab-node-longname": "clab-bgp_test-node2",
-        "clab-node-name": "node2",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/as1_speaker",
+        "clab-node-longname": "clab-bgp_test-as1_speaker",
+        "clab-node-name": "as1_speaker",
+        "clab-node-type": "",
+        "clab-owner": "vscode",
+        "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
+        "containerlab": "bgp_test"
+      },
+      "port-bindings": [
+      ]
+    },
+    "as2_node1": {
+      "index": "3",
+      "shortname": "as2_node1",
+      "longname": "clab-bgp_test-as2_node1",
+      "fqdn": "as2_node1.bgp_test.io",
+      "group": "",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/as2_node1",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "192.168.2.1",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/as2_node1",
+        "clab-node-longname": "clab-bgp_test-as2_node1",
+        "clab-node-name": "as2_node1",
+        "clab-node-type": "",
+        "clab-owner": "vscode",
+        "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
+        "containerlab": "bgp_test"
+      },
+      "port-bindings": [
+      ]
+    },
+    "as2_node2": {
+      "index": "4",
+      "shortname": "as2_node2",
+      "longname": "clab-bgp_test-as2_node2",
+      "fqdn": "as2_node2.bgp_test.io",
+      "group": "",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/as2_node2",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "192.168.2.2",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/as2_node2",
+        "clab-node-longname": "clab-bgp_test-as2_node2",
+        "clab-node-name": "as2_node2",
+        "clab-node-type": "",
+        "clab-owner": "vscode",
+        "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
+        "containerlab": "bgp_test"
+      },
+      "port-bindings": [
+      ]
+    },
+    "as2_speaker": {
+      "index": "5",
+      "shortname": "as2_speaker",
+      "longname": "clab-bgp_test-as2_speaker",
+      "fqdn": "as2_speaker.bgp_test.io",
+      "group": "",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/as2_speaker",
+      "kind": "linux",
+      "image": "my-frr:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "192.168.2.254",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/as2_speaker",
+        "clab-node-longname": "clab-bgp_test-as2_speaker",
+        "clab-node-name": "as2_speaker",
+        "clab-node-type": "",
+        "clab-owner": "vscode",
+        "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
+        "containerlab": "bgp_test"
+      },
+      "port-bindings": [
+      ]
+    },
+    "br": {
+      "index": "6",
+      "shortname": "br",
+      "longname": "clab-bgp_test-br",
+      "fqdn": "br.bgp_test.io",
+      "group": "",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/br",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "192.168.0.10",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/br",
+        "clab-node-longname": "clab-bgp_test-br",
+        "clab-node-name": "br",
+        "clab-node-type": "",
+        "clab-owner": "vscode",
+        "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
+        "containerlab": "bgp_test"
+      },
+      "port-bindings": [
+      ]
+    },
+    "br1|br": {
+      "index": "7",
+      "shortname": "br1|br",
+      "longname": "clab-bgp_test-br1|br",
+      "fqdn": "br1|br.bgp_test.io",
+      "group": "",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/br1|br",
+      "kind": "bridge",
+      "image": "",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "",
+      "mgmt-ipv4-prefix-length": 0,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
+        "clab-node-group": "",
+        "clab-node-kind": "bridge",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/br1|br",
+        "clab-node-longname": "clab-bgp_test-br1|br",
+        "clab-node-name": "br1|br",
+        "clab-node-type": "",
+        "clab-owner": "vscode",
+        "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
+        "containerlab": "bgp_test"
+      },
+      "port-bindings": [
+      ]
+    },
+    "br2|br": {
+      "index": "8",
+      "shortname": "br2|br",
+      "longname": "clab-bgp_test-br2|br",
+      "fqdn": "br2|br.bgp_test.io",
+      "group": "",
+      "labdir": "/workspaces/clab-bgp/test/clab-bgp_test/br2|br",
+      "kind": "bridge",
+      "image": "",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "",
+      "mgmt-ipv4-prefix-length": 0,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9f00313760c2",
+        "clab-node-group": "",
+        "clab-node-kind": "bridge",
+        "clab-node-lab-dir": "/workspaces/clab-bgp/test/clab-bgp_test/br2|br",
+        "clab-node-longname": "clab-bgp_test-br2|br",
+        "clab-node-name": "br2|br",
         "clab-node-type": "",
         "clab-owner": "vscode",
         "clab-topo-file": "/workspaces/clab-bgp/test/test.clab.yaml",
@@ -84,15 +298,99 @@
   "links": [
     {
       "a": {
-        "node": "node1",
+        "node": "as1_speaker",
         "interface": "eth1",
-        "mac": "aa:c1:ab:19:15:38",
+        "mac": "aa:c1:ab:2c:e2:81",
         "peer": "z"
       },
       "z": {
-        "node": "node2",
+        "node": "br1|br",
+        "interface": "eth201",
+        "mac": "aa:c1:ab:a7:07:ad",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "as1_node1",
         "interface": "eth1",
-        "mac": "aa:c1:ab:ee:4a:81",
+        "mac": "aa:c1:ab:15:27:77",
+        "peer": "z"
+      },
+      "z": {
+        "node": "br1|br",
+        "interface": "eth11",
+        "mac": "aa:c1:ab:18:e9:dd",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "as1_node2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:3f:4a:c8",
+        "peer": "z"
+      },
+      "z": {
+        "node": "br1|br",
+        "interface": "eth12",
+        "mac": "aa:c1:ab:d0:d5:04",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "as2_speaker",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:43:11:f4",
+        "peer": "z"
+      },
+      "z": {
+        "node": "br2|br",
+        "interface": "eth202",
+        "mac": "aa:c1:ab:36:ca:35",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "as2_node1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:4d:f2:86",
+        "peer": "z"
+      },
+      "z": {
+        "node": "br2|br",
+        "interface": "eth21",
+        "mac": "aa:c1:ab:23:d3:26",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "as2_node2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:56:12:ee",
+        "peer": "z"
+      },
+      "z": {
+        "node": "br2|br",
+        "interface": "eth22",
+        "mac": "aa:c1:ab:9a:9d:e2",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "as1_speaker",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:5e:60:38",
+        "peer": "z"
+      },
+      "z": {
+        "node": "as2_speaker",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:b8:e5:3a",
         "peer": "a"
       }
     }
