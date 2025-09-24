@@ -14,11 +14,6 @@ as1_node1:
     password: 
     platform: linux
     hostname: 192.168.1.1
-as1_node2:
-    username: 
-    password: 
-    platform: linux
-    hostname: 192.168.1.2
 as1_speaker:
     username: 
     password: 
@@ -29,16 +24,21 @@ as2_node1:
     password: 
     platform: linux
     hostname: 192.168.2.1
-as2_node2:
-    username: 
-    password: 
-    platform: linux
-    hostname: 192.168.2.2
 as2_speaker:
     username: 
     password: 
     platform: linux
     hostname: 192.168.2.254
+as3_node1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 192.168.3.1
+as3_speaker:
+    username: 
+    password: 
+    platform: linux
+    hostname: 192.168.3.254
 br:
     username: 
     password: 

@@ -15,15 +15,15 @@ all:
       hosts:
         clab-bgp_test-as1_node1:
           ansible_host: 192.168.1.1
-        clab-bgp_test-as1_node2:
-          ansible_host: 192.168.1.2
         clab-bgp_test-as1_speaker:
           ansible_host: 192.168.1.254
         clab-bgp_test-as2_node1:
           ansible_host: 192.168.2.1
-        clab-bgp_test-as2_node2:
-          ansible_host: 192.168.2.2
         clab-bgp_test-as2_speaker:
           ansible_host: 192.168.2.254
+        clab-bgp_test-as3_node1:
+          ansible_host: 192.168.3.1
+        clab-bgp_test-as3_speaker:
+          ansible_host: 192.168.3.254
         clab-bgp_test-br:
           ansible_host: 192.168.0.10
