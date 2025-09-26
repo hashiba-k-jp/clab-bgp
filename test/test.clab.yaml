@@ -4,20 +4,6 @@ mgmt:
   ipv4-subnet: 192.168.0.0/16
 topology:
   nodes:
-    # A Container for Bridges (Namespace)
-    br:
-      kind: linux
-      image: alpine:latest
-      mgmt-ipv4: 192.168.0.10
-    br1|br:
-      kind: bridge
-      network-mode: container:br
-    br2|br:
-      kind: bridge
-      network-mode: container:br
-    br3|br:
-      kind: bridge
-      network-mode: container:br
 
     # Containers for AS65001
     as1_speaker:
@@ -98,17 +84,11 @@ topology:
     #     - ip route add default via 10.3.0.254
 
   links:
-    - endpoints: ["as1_speaker:eth1", "br1|br:eth201"]
-    - endpoints: ["as1_node1:eth1",   "br1|br:eth11"]
-    # - endpoints: ["as1_node2:eth1",   "br1|br:eth12"]
+    - endpoints: ["as1_speaker:eth1", "as1_node1:eth1"]
 
-    - endpoints: ["as2_speaker:eth1", "br2|br:eth202"]
-    - endpoints: ["as2_node1:eth1",   "br2|br:eth21"]
-    # - endpoints: ["as2_node2:eth1",   "br2|br:eth22"]
+    - endpoints: ["as2_speaker:eth1", "as2_node1:eth1"]
 
-    - endpoints: ["as3_speaker:eth1", "br3|br:eth203"]
-    - endpoints: ["as3_node1:eth1",   "br3|br:eth31"]
-    # - endpoints: ["as3_node2:eth1",   "br2|br:eth32"]
+    - endpoints: ["as3_speaker:eth1", "as3_node1:eth1"]
 
     - endpoints: ["as1_speaker:eth2", "as2_speaker:eth2"]
     - endpoints: ["as3_speaker:eth2", "as2_speaker:eth3"]
