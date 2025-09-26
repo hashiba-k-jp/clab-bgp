@@ -15,6 +15,9 @@ topology:
     br2|br:
       kind: bridge
       network-mode: container:br
+    br3|br:
+      kind: bridge
+      network-mode: container:br
 
     # Containers for AS65001
     as1_speaker:
@@ -103,8 +106,8 @@ topology:
     - endpoints: ["as2_node1:eth1",   "br2|br:eth21"]
     # - endpoints: ["as2_node2:eth1",   "br2|br:eth22"]
 
-    - endpoints: ["as3_speaker:eth1", "br2|br:eth203"]
-    - endpoints: ["as3_node1:eth1",   "br2|br:eth31"]
+    - endpoints: ["as3_speaker:eth1", "br3|br:eth203"]
+    - endpoints: ["as3_node1:eth1",   "br3|br:eth31"]
     # - endpoints: ["as3_node2:eth1",   "br2|br:eth32"]
 
     - endpoints: ["as1_speaker:eth2", "as2_speaker:eth2"]
