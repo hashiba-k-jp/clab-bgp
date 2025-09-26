@@ -83,6 +83,32 @@ topology:
     #     - ip route del default
     #     - ip route add default via 10.3.0.254
 
+    # Containers for AS65004
+    as4_speaker:
+      kind: linux
+      image: my-frr:latest
+      image-pull-policy: never
+      binds:
+        - configures/as4/daemons:/etc/frr/daemons
+        - configures/as4/speaker.conf:/etc/frr/frr.conf
+      mgmt-ipv4: 192.168.4.254
+    as4_node1:
+      kind: linux
+      image: alpine:latest
+      mgmt-ipv4: 192.168.4.1
+      exec:
+        - ip addr add 10.4.0.1/24 dev eth1
+        - ip route del default
+        - ip route add default via 10.4.0.254
+    # as4_node2:
+    #   kind: linux
+    #   image: alpine:latest
+    #   mgmt-ipv4: 192.168.4.2
+    #   exec:
+    #     - ip addr add 10.4.0.2/24 dev eth1
+    #     - ip route del default
+    #     - ip route add default via 10.4.0.254
+
   links:
     - endpoints: ["as1_speaker:eth1", "as1_node1:eth1"]
 
@@ -90,5 +116,8 @@ topology:
 
     - endpoints: ["as3_speaker:eth1", "as3_node1:eth1"]
 
+    - endpoints: ["as4_speaker:eth1", "as4_node1:eth1"]
+
     - endpoints: ["as1_speaker:eth2", "as2_speaker:eth2"]
     - endpoints: ["as3_speaker:eth2", "as2_speaker:eth3"]
+    - endpoints: ["as4_speaker:eth2", "as2_speaker:eth4"]
