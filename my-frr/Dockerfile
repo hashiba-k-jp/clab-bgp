@@ -43,22 +43,20 @@ RUN make
 RUN make install
 
 # GRPC
-RUN apt-get install -y libgrpc++-dev protobuf-compiler-grpc
+RUN apt-get install -y --no-install-recommends libgrpc++-dev protobuf-compiler-grpc
 
 # Config Rollbacks
 RUN apt install libsqlite3-dev
 
 # ZeroMQ (Optional)
-RUN apt-get install -y libzmq5 libzmq3-dev
+RUN apt-get install -y --no-install-recommends libzmq5 libzmq3-dev
 
-# Building & Installing FRR
-RUN apt-get install -y adduser
-RUN groupadd -r -g 92 frr
-RUN groupadd -r -g 85 frrvty
-RUN adduser --system --ingroup frr --home /var/run/frr/ --gecos "FRR suite" --shell /sbin/nologin frr
-RUN usermod -a -G frrvty frr
+# Install RPKI Package
+RUN apt-get install -y --no-install-recommends \
+    frr-rpki-rtrlib \
+    librtr-dev
 
-# Compile
+# Download FRR and Compile
 RUN git clone https://github.com/frrouting/frr.git /frr
 WORKDIR /frr
 RUN ./bootstrap.sh
@@ -75,6 +73,7 @@ RUN ./configure \
     --enable-configfile-mask=0640 \
     --enable-logfile-mask=0640 \
     --enable-snmp \
+    --enable-rpki \
     --enable-multipath=64 \
     --enable-user=frr \
     --enable-group=frr \
@@ -83,6 +82,10 @@ RUN ./configure \
     --with-pkg-extra-version=-MyOwnFRRVersion
 RUN make
 RUN make install
+
+RUN apt-get install -y adduser
+RUN adduser --system --ingroup frr --home /var/run/frr/ --gecos "FRR suite" --shell /sbin/nologin frr
+RUN usermod -a -G frrvty frr
 
 # Install FRR configuration files
 RUN install -m 775 -o frr -g frr -d /var/log/frr
